@@ -1,4 +1,8 @@
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
+
+export interface ITokenPayload extends JwtPayload {
+  id: string;
+}
 
 const secret = process.env.JWT_SECRET!;
 
@@ -10,8 +14,8 @@ const generateToken = (userId: string) => {
   });
 };
 
-const verifyToken = (userToken: string) => {
-  return jwt.verify(userToken, secret);
+const verifyToken = (userToken: string): ITokenPayload => {
+  return jwt.verify(userToken, secret) as ITokenPayload;
 };
 
 export { generateToken, verifyToken };

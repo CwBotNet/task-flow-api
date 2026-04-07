@@ -2,6 +2,7 @@ import express from "express";
 import { loadEnvFile } from "node:process";
 import { authRouter } from "./routes";
 import { connectDb } from "./db";
+import { errorHandler } from "./middleware/error.middleware";
 
 loadEnvFile(".env.local");
 
@@ -21,6 +22,8 @@ const startServer = async () => {
     });
 
     app.use("/api/auth", authRouter);
+
+    app.use(errorHandler);
 
     app.listen(PORT, () => {
       console.log("server is running on port: ", PORT);
