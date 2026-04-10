@@ -1,7 +1,7 @@
 import { Document, Schema, Types, model } from "mongoose";
 
 export interface IProject extends Document {
-  userId: Types.ObjectId;
+  owner: Types.ObjectId;
   name: string;
   description?: string;
   status: "pending" | "in-progress" | "completed";
@@ -14,7 +14,7 @@ export interface IProject extends Document {
 
 export const ProjectSchema = new Schema<IProject>(
   {
-    userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    owner: { type: Schema.Types.ObjectId, ref: "User", required: true },
     name: { type: String, required: true },
     description: { type: String },
     status: {
