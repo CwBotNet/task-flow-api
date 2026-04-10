@@ -1,6 +1,7 @@
 import { Document, model, Schema } from "mongoose";
 import bcrypt from "bcrypt";
-// User INterface
+
+// User Interface
 export interface IUser extends Document {
   name: string;
   avatar?: string;
@@ -51,6 +52,6 @@ UserSchema.methods.comparePassword = async function (
   return await bcrypt.compare(UserPassword, this.password);
 };
 
-// User Mode
+// User Model
 
 export default model<IUser>("User", UserSchema);
