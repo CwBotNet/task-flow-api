@@ -21,6 +21,10 @@ const startServer = async () => {
       res.send("Hello World!");
     });
 
+    app.get("/api/health", (req, res) => {
+      res.status(200).json({ success: true, message: "Server is healthy" });
+    });
+
     app.use("/api/auth", authRouter);
 
     app.use(errorHandler);
