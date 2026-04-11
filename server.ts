@@ -1,6 +1,6 @@
 import express from "express";
 import { loadEnvFile } from "node:process";
-import { authRouter } from "./routes";
+import { authRouter, projectRouter } from "./routes";
 import { connectDb } from "./db";
 import { errorHandler } from "./middleware/error.middleware";
 
@@ -25,8 +25,17 @@ const startServer = async () => {
       res.status(200).json({ success: true, message: "Server is healthy" });
     });
 
+    // 🚦 ROUTE REGISTRY
     app.use("/api/auth", authRouter);
+    app.use("/api/project", projectRouter);
 
+    /**
+     * 🛡️ THE GLOBAL SAFETY NET (Error Handler)
+     * SENIOR NOTE: This MUST be the very last app.use().
+     * Why? Because Express matches routes in order. If an error is thrown in a route,
+     * Express looks for the next middleware with 4 arguments (err, req, res, next).
+     * If you put this BEFORE your routes, it will never be reached!
+     */
     app.use(errorHandler);
 
     app.listen(PORT, () => {
