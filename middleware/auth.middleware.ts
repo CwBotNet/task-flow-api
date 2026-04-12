@@ -17,10 +17,17 @@ export const authHandler = asyncHandler(
     }
 
     const userId = decodedToken.id;
+
+    /**
+     * 🔍 IDENTITY PERSISTENCE
+     * SENIOR NOTE: We look up the user again even if the token is valid.
+     * Why? Because a user's account could be DELETED or BANNED after the token was issued.
+     * The token is still valid mathematically, but the user is gone. We must check!
+     */
     const user = await User.findById(userId);
 
     if (!user) {
-      throw new AppError("Invalid Token", 401);
+      throw new AppError("Invalid Token - User no longer exists", 401);
     }
 
     req.user = user;
