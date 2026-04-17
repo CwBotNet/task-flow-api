@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import { asyncHandler, generateToken } from "../lib";
 import User from "../models/user.model";
 import { AppError } from "../lib";

@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import { asyncHandler, AppError } from "../lib";
 import Project from "../models/project.model";
 import { projectValidator } from "../utils/projectValidater";
