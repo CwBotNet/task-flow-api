@@ -47,4 +47,12 @@ const createTask = asyncHandler(async (req: Request, res: Response) => {
   });
 });
 
-export { createTask };
+const getTaskByProject = asyncHandler(async (req: Request, res: Response) => {
+  const { projectId } = req.params;
+
+  const project = await Project.findById(projectId);
+});
+const updateTask = asyncHandler(async (req: Request, res: Response) => {});
+const deleteTask = asyncHandler(async (req: Request, res: Response) => {});
+
+export { createTask, getTaskByProject, updateTask, deleteTask };

@@ -7,6 +7,7 @@ import {
   updateProject,
   deleteProject,
 } from "../controller/project.controller";
+import taskRouter from "./task.route";
 
 const router = Router();
 
@@ -19,5 +20,7 @@ router
   .get(getProjectById)
   .patch(updateProject)
   .delete(deleteProject);
+
+router.use("/:projectId/tasks", taskRouter);
 
 export default router;
