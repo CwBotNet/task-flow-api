@@ -71,5 +71,3 @@ We used nested routes to reflect the relationship between Projects and Tasks.
 When adding new modules, follow this sequence:
 
 1. **Define Schema** (Models) -> 2. **Implement Logic** (Controllers) -> 3. **Expose Entrypoints** (Routes) -> 4. **Apply Protections** (Middleware).
-
-**Congratulations, Developer! 🎓 You have built a solid, type-safe foundation for the TaskFlow ecosystem.**
