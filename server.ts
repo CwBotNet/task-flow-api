@@ -1,6 +1,6 @@
 import express from "express";
 import { loadEnvFile } from "node:process";
-import { authRouter, projectRouter } from "./routes";
+import { authRouter, projectRouter, taskRouter } from "./routes";
 import { connectDb } from "./db";
 import { errorHandler } from "./middleware/error.middleware";
 
@@ -28,6 +28,7 @@ const startServer = async () => {
     // 🚦 ROUTE REGISTRY
     app.use("/api/auth", authRouter);
     app.use("/api/project", projectRouter);
+    app.use("/api/tasks", taskRouter);
 
     /**
      * 🛡️ THE GLOBAL SAFETY NET (Error Handler)
